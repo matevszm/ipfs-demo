@@ -16,7 +16,7 @@ async fn main() {
     for _ in 0..10000 {
         publish_client
             .pubsub_pub(TOPIC, Cursor::new(MESSAGE))
-            .boxed_local().await.unwrap();
+            .boxed_local().await.unwrap_or(());
     }
 
     let duration = SystemTime::now().duration_since(start_time).unwrap();
